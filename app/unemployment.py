@@ -1,6 +1,14 @@
-from getpass import getpass
+#from getpass import getpass
+#
+#API_KEY = getpass("Please input your AlphaVantage API Key: ")
 
-API_KEY = getpass("Please input your AlphaVantage API Key: ")
+import os
+from dotenv import load_dotenv
+
+load_dotenv() #> invoking this function loads contents of the ".env" file into the script's environment...
+
+API_KEY = os.getenv("ALPHAVANTAGE_API_KEY")
+
 
 import requests
 import json
@@ -14,7 +22,9 @@ parsed_response = json.loads(response.text)
 print(type(parsed_response))
 pprint(parsed_response)
 
+
 data = parsed_response["data"]
+
 
 # Challenge A
 #
@@ -25,6 +35,8 @@ print("-------------------------")
 print("LATEST UNEMPLOYMENT RATE:")
 #print(data[0])
 print(f"{data[0]['value']}%", "as of", data[0]["date"])
+
+
 
 # Challenge B
 #
@@ -42,6 +54,7 @@ print("-------------------------")
 print("AVG UNEMPLOYMENT THIS YEAR:", f"{mean(rates_this_year)}%")
 print("NO MONTHS:", len(this_year))
 
+
 # Challenge C
 #
 # Plot a line chart of unemployment rates over time.
@@ -53,30 +66,3 @@ rates = [float(d["value"]) for d in data]
 
 fig = line(x=dates, y=rates, title="United States Unemployment Rate over time", labels= {"x": "Month", "y": "Unemployment Rate"})
 fig.show()
-
-#def format_pct(my_number:float) -> str:
-
-def format_pct(my_number):
-    """
-        Formats a percentage number like 3.6555554 as percent, rounded to two decimal places.
-
-        Param my_number (float) like 3.6555554
-
-        Returns (str) like '3.66%'
-    """
-    return f"{my_number:.2f}%"
-
-print(format_pct(3.65554))
-
-print(format_pct(25.4))
-
-result = format_pct(25.4)
-print(result)
-
-assert format_pct(3.65554) == '3.66%'
-
-assert format_pct(25.4) == '25.40%'
-
-result = format_pct(25.4)
-assert result == '25.40%'
-#assert result == 'oops%'
