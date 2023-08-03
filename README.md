@@ -37,6 +37,12 @@ python app/unemployment.py
 
 python -m app.unemployment
 ```
+
+# ... if `export` doesn't work for you, try `set` instead
+# ... or try a ".env" file approach
+export FLASK_APP=web_app
+flask run
+
 ## Testing
 
 Run tests:
