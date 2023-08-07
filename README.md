@@ -30,13 +30,22 @@ pip install -r requirements.txt
 
 ## Usage
 
-Run the report:
+Run the unemployment report:
 
 ```sh
 python app/unemployment.py
 
 python -m app.unemployment
 ```
+
+
+
+Run the stocks report:
+
+```sh
+python -m app.stocks
+```
+
 
 # ... if `export` doesn't work for you, try `set` instead
 # ... or try a ".env" file approach
